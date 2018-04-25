@@ -1,6 +1,9 @@
 page-home {
     .background{
-        background-image: url('../assets/sampah.jpg');
+        background-image: url('../assets/hutan.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     .scroll-content {
@@ -14,7 +17,7 @@ page-home {
     ion-card.card {
         box-shadow: none;
         background: rgba(0, 0, 0, 0.5);
-        border-radius: 5px;
+        border-radius: 0px;
     }
 
     ion-card-header.card-header {
@@ -22,11 +25,28 @@ page-home {
     }
 
     .list > .item-blockc:first-child{
-        border: medium none; 
+        border: none;
+    }
+    .button{
+      background-color: #06aa0f;
+      border: none
+    }
+    .button:hover {
+      background-color: #027008;
+    }
+    .button2{
+      background-color: #266fb7;
+      position: fixed;
+      right: 0px;
+      bottom: 0px;
+      padding: 15px 32px;
+    }
+    .button2:hover{
+      background-color: #113b66;
     }
     .item {
         margin-bottom: 10px;
-        background: rgba(255, 255, 255, 0.5);
+        background: rgba(0, 0, 0, 0.5);
         border: medium none;
 
         .text-input, {
@@ -54,4 +74,3 @@ page-home {
         }
     }
 }
-  
