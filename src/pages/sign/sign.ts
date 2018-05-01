@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { ProfilPage } from '../profil/profil';
+import { EmailValidator } from '@angular/forms';
 /**
  * Generated class for the SignPage page.
  *
@@ -15,6 +16,8 @@ import { ProfilPage } from '../profil/profil';
   templateUrl: 'sign.html',
 })
 export class SignPage {
+  @ViewChild('fullname') fullname;
+  @ViewChild('email') EmailValidator;
   @ViewChild('uname') uname;
   @ViewChild('password') password;
   constructor(private alert: AlertController, public navCtrl: NavController, public navParams: NavParams) {
@@ -43,7 +46,7 @@ export class SignPage {
 
   registeruser(){
     this.showAlert();
-    console.log('Would register user with ', this.uname.value, this.password.value);
+    console.log('Would register user with ', this.fullname.value, this.EmailValidator.value, this.uname.value, this.password.value);
   }
 
 
