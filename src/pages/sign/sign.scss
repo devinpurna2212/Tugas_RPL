@@ -1,3 +1,40 @@
 page-sign {
+  .headers{
+    background-color: #8ba2e5;
+  }
+  .background{
+    background-image: url('../assets/city.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .item {
+      margin-bottom: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      border: medium none;
 
+      .text-input, {
+          color: #fff;
+      }
+
+      input::-moz-placeholder {
+          color: #fff!important;
+      }
+
+      input:-moz-placeholder {
+          color: #fff!important;
+      }
+
+      *::-webkit-input-placeholder {
+          color: #fff!important;
+      }
+
+      *:-as-input-placeholder {
+          color: #fff!important;
+      }
+
+      *:-moz-placeholder {
+          color: #fff!important;
+      }
+  }
 }

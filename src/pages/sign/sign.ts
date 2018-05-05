@@ -3,6 +3,7 @@ import { NavController, NavParams, LoadingController, AlertController } from 'io
 import { NgForm } from '@angular/forms';
 import { Http } from '@angular/http';
 import { HomePage } from '../home/home';
+import { ProfilPage } from '../profil/profil';
 
 
 @Component({
@@ -30,6 +31,20 @@ export class SignPage {
     console.log('ionViewDidLoad SignPage');
   }
 
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Succes!',
+      subTitle: 'Now you could login to our awsomeness!',
+      buttons: [{
+          text: 'login',
+          handler: () => {
+            this.navCtrl.push(ProfilPage);
+          }
+        }]
+    });
+    alert.present();
+  }
+
   signUp(){
     var link = 'http://localhost/backend/register.php';
     var newUser = JSON.stringify({fullname: this.data.fullname, username: this.data.username, email: this.data.email, password: this.data.password})
@@ -37,14 +52,9 @@ export class SignPage {
     this.http.post(link, newUser).subscribe(data => {
       this.data.response = data["_body"]; //https://stackoverflow.com/questions/39574305/property-body-does-not-exist-on-type-response
       // console.log(this.data.response);
-      let alert = this.alertCtrl.create({
-        title: 'Register Success!',
-        buttons: ['OK']
-      });
-      alert.present();
-    }, error => {
-      console.log("Oooops!");
-    });
+      this.showAlert();
+  }, error => {
+    console.log("Oooops!");
+  });
   }
-  
 }

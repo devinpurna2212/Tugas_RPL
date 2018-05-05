@@ -6,10 +6,10 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  
+<ion-content padding class="background">
   <form #registerForm="ngForm" novalidate>
   <ion-list>
+
   <ion-item>
     <ion-label floating>Full Name</ion-label>
     <ion-input type="text" [(ngModel)]="data.fullname" name="fullname" #fullname="ngModel" spellcheck="false" autocapitalize="on"></ion-input>
@@ -17,6 +17,7 @@
   <p ion-text [hidden]="fullname.valid || submitted == false" color="danger" padding-left class="Warning">
     Nama harus diisi
     </p> 
+
   <ion-item>
       <ion-label floating>Email</ion-label>
       <ion-input type="email" [(ngModel)]="data.email" name="email" #email="ngModel" spellcheck="false"></ion-input>
@@ -31,7 +32,7 @@
   </ion-item>
   <p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left class="Warning">
     Username harus diisi
-    </p> 
+    </p>
 
   <ion-item>
     <ion-label floating>Password</ion-label>
@@ -40,7 +41,7 @@
   <p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left class="Warning">
     Password harus diisi
     </p> 
-  
+
 </ion-list>
 </form>
 

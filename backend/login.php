@@ -1,35 +1,32 @@
-<?php 
-
-require_once("config.php");
-
-if(isset($_POST['login'])){
-
-    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-
-    $sql = "SELECT * FROM sign up WHERE username=:username OR email=:email";
-    $stmt = $db->prepare($sql);
-    
-    // bind parameter ke query
-    $params = array(
-        ":username" => $username,
-        ":email" => $username
+<?php
+  // Always include this line in php file
+  include "config.php";
+  $postdata = file_get_contents("php://input");
+  $username = "";
+  $password = "";
+  // Getting data from POST with JSON format
+  if (isset($postdata)) {
+    $request = json_decode($postdata);
+    $username = $request->username;
+    $password = $request->pass;
+  }
+  // Password Encryption
+  $encrypt_password = md5($password);
+  // Check if the users already registered
+  $query_login = mysqli_query($connect, "SELECT name, email, username FROM user WHERE username='$username' AND pass='$encrypt_password'");
+  if(mysqli_num_rows($query_login)){
+    $row=mysqli_fetch_assoc($query_login);
+    $data =array(
+        'message' => "Login Success",
+        'data' => $row,
+        'status' => "200"
     );
-
-    $stmt->execute($params);
-
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // jika user terdaftar
-    if($user){
-        // verifikasi password
-        if(password_verify($password, $user["password"])){
-            // buat Session
-            session_start();
-            $_SESSION["user"] = $user;
-            // login sukses, alihkan ke halaman timeline
-            header("Location: timeline.php");
-        }
-    }
-}
+  }
+  else {
+      $data =array(
+          'message' => "Login Failed, Email or Password Wrong",
+          'status' => "404"
+      );
+  }
+  echo json_encode($data);
 ?>
