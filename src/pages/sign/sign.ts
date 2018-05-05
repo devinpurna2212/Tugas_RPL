@@ -1,53 +1,50 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { NgForm } from '@angular/forms';
+import { Http } from '@angular/http';
 import { HomePage } from '../home/home';
-import { ProfilPage } from '../profil/profil';
-import { EmailValidator } from '@angular/forms';
-/**
- * Generated class for the SignPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
-@IonicPage()
+
 @Component({
   selector: 'page-sign',
   templateUrl: 'sign.html',
 })
 export class SignPage {
-  @ViewChild('fullname') fullname;
-  @ViewChild('email') EmailValidator;
-  @ViewChild('uname') uname;
-  @ViewChild('password') password;
-  constructor(private alert: AlertController, public navCtrl: NavController, public navParams: NavParams) {
-  }
-  
-  showAlert() {
-    let alert = this.alert.create({
-      title: 'Succes!',
-      subTitle: 'Now you could login to our awsomeness!',
-      buttons: [
-        {
-          text: 'login',
-          handler: () => {
-            this.navCtrl.push(ProfilPage);
-          }
-        }
+  data:any = {};
 
-      ]
-    });
-    alert.present();
+  constructor(public navCtrl: NavController, 
+              public alertCtrl: AlertController, 
+              public navParams: NavParams, 
+              public http: Http) {
+    this.data.fullname = '';
+    this.data.email = '';
+    this.data.username = '';
+    this.data.password = '';
+    // this.data.password2 = '';
+    this.data.response = '';
+
+    this.http = http;
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad(){
     console.log('ionViewDidLoad SignPage');
   }
 
-  registeruser(){
-    this.showAlert();
-    console.log('Would register user with ', this.fullname.value, this.EmailValidator.value, this.uname.value, this.password.value);
+  signUp(){
+    var link = 'http://localhost/backend/register.php';
+    var newUser = JSON.stringify({fullname: this.data.fullname, username: this.data.username, email: this.data.email, password: this.data.password})
+    // console.log(newUser);
+    this.http.post(link, newUser).subscribe(data => {
+      this.data.response = data["_body"]; //https://stackoverflow.com/questions/39574305/property-body-does-not-exist-on-type-response
+      // console.log(this.data.response);
+      let alert = this.alertCtrl.create({
+        title: 'Register Success!',
+        buttons: ['OK']
+      });
+      alert.present();
+    }, error => {
+      console.log("Oooops!");
+    });
   }
-
-
+  
 }
