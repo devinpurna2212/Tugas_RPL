@@ -9,11 +9,7 @@ import { ProfilPage } from '../profil/profil';
 })
 export class HomePage {
 
-   @ViewChild('Username') Username;
-   @ViewChild('Password') Password;
-
   constructor(private alert: AlertController, public navCtrl: NavController, public navParams: NavParams) {
-
   }
 
   showAlert() {
@@ -31,10 +27,6 @@ export class HomePage {
       ]
     });
     alert.present();
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
   }
 
   profil(){
