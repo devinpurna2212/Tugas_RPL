@@ -1,18 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
-
+import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
+
 import { HomePage } from '../pages/home/home';
 import { SignPage } from '../pages/sign/sign';
 import { ProfilPage } from '../pages/profil/profil';
+<<<<<<< HEAD
 import { BarangPage } from '../pages/barang/barang';
 import { VolunteerPage } from '../pages/volunteer/volunteer';
 import { NimPage } from '../pages/nim/nim';
 import { DatasampahPage } from '../pages/datasampah/datasampah';
 import { MasukanPage } from '../pages/masukan/masukan';
+=======
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { DataProvider } from '../providers/data';
+import { IonicStorageModule } from '@ionic/storage';
+
+>>>>>>> 23f86c8b493de8d3281ffb35e65583f3d3974857
 @NgModule({
   declarations: [
     MyApp,
@@ -27,7 +35,9 @@ import { MasukanPage } from '../pages/masukan/masukan';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,7 +54,8 @@ import { MasukanPage } from '../pages/masukan/masukan';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DataProvider
   ]
 })
 export class AppModule {}

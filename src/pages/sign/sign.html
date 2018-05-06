@@ -7,33 +7,53 @@
 </ion-header>
 
 <ion-content padding class="background">
+<<<<<<< HEAD
+  <form #registerForm="ngForm" novalidate>
+=======
 
+>>>>>>> e4c23de5f39af358d83a3f855f96d46c5b215295
   <ion-list>
 
   <ion-item>
     <ion-label floating>Full Name</ion-label>
-    <ion-input type="text" #fullname></ion-input>
+    <ion-input type="text" [(ngModel)]="data.fullname" name="fullname" #fullname="ngModel" spellcheck="false" autocapitalize="on"></ion-input>
   </ion-item>
+  <p ion-text [hidden]="fullname.valid || submitted == false" color="danger" padding-left class="Warning">
+    Nama harus diisi
+    </p> 
 
   <ion-item>
       <ion-label floating>Email</ion-label>
-      <ion-input type="email" #email></ion-input>
+      <ion-input type="email" [(ngModel)]="data.email" name="email" #email="ngModel" spellcheck="false"></ion-input>
     </ion-item>
+    <p ion-text [hidden]="email.valid || submitted == false" color="danger" padding-left class="Warning">
+      Email harus diisi
+      </p> 
 
   <ion-item>
     <ion-label floating>User Name</ion-label>
-    <ion-input type="text" #uname></ion-input>
+    <ion-input type="text" [(ngModel)]="data.username" name="username" #username="ngModel" spellcheck="false"></ion-input>
   </ion-item>
+  <p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left class="Warning">
+    Username harus diisi
+    </p>
 
   <ion-item>
     <ion-label floating>Password</ion-label>
-    <ion-input type="password" #password></ion-input>
+    <ion-input type="password" [(ngModel)]="data.password" name="password" #password="ngModel" spellcheck="false"></ion-input>
   </ion-item>
+<<<<<<< HEAD
+  <p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left class="Warning">
+    Password harus diisi
+    </p> 
+=======
+>>>>>>> e4c23de5f39af358d83a3f855f96d46c5b215295
 
 </ion-list>
+</form>
 
 <div padding>
-  <button block ion-button (click)="registeruser()" item-left>Register</button>
+  <button block ion-button (click)="signUp()" item-left>Register</button>
 </div>
 
 </ion-content>
