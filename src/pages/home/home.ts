@@ -10,32 +10,6 @@ import { Http } from '@angular/http';
 })
 export class HomePage {
 
-<<<<<<< HEAD
-  constructor(private alert: AlertController, public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  showAlert() {
-    let alert = this.alert.create({
-      title: 'Succes!',
-      subTitle: 'now you are logged in',
-      buttons: [
-        {
-          text: 'ok',
-          handler: () => {
-            this.navCtrl.push(ProfilPage);
-          }
-        }
-
-      ]
-    });
-    alert.present();
-  }
-
-  profil(){
-    this.showAlert();
-  }
-
-=======
   data:any = {};
 
   constructor(public navCtrl: NavController, public http: Http, public alertCtrl: AlertController, ) {
@@ -49,7 +23,6 @@ export class HomePage {
     console.log('ionViewDidLoad HomePage');
   }
   
->>>>>>> 23f86c8b493de8d3281ffb35e65583f3d3974857
   sign(){
     this.navCtrl.push(SignPage)
   }

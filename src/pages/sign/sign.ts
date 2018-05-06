@@ -27,13 +27,6 @@ export class SignPage {
     this.http = http;
   }
 
-<<<<<<< HEAD
-  ionViewDidLoad(){
-    console.log('ionViewDidLoad SignPage');
-  }
-
-=======
->>>>>>> e4c23de5f39af358d83a3f855f96d46c5b215295
   showAlert() {
     let alert = this.alertCtrl.create({
       title: 'Succes!',
