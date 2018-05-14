@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { NimPage } from '../nim/nim';
 
 /**
- * Generated class for the ProfilPage page.
+ * Generated class for the MenuPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,19 +10,16 @@ import { NimPage } from '../nim/nim';
 
 @IonicPage()
 @Component({
-  selector: 'page-profil',
-  templateUrl: 'profil.html',
+  selector: 'page-menu',
+  templateUrl: 'menu.html',
 })
-export class ProfilPage {
+export class MenuPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilPage');
+    console.log('ionViewDidLoad MenuPage');
   }
 
-  tambah(){
-    this.navCtrl.push(NimPage)
-  }
 }

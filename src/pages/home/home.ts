@@ -27,6 +27,10 @@ export class HomePage {
     this.navCtrl.push(SignPage)
   }
 
+  masuk(){
+    this.navCtrl.setRoot('ProfilPage');
+  }
+
   login(){
     var link = 'http://localhost/backend/login.php';
       var newLogin = JSON.stringify({username: this.data.username, password: this.data.password});

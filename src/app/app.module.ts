@@ -6,12 +6,12 @@ import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home';
 import { SignPage } from '../pages/sign/sign';
-import { ProfilPage } from '../pages/profil/profil';
 import { BarangPage } from '../pages/barang/barang';
 import { VolunteerPage } from '../pages/volunteer/volunteer';
 import { NimPage } from '../pages/nim/nim';
 import { DatasampahPage } from '../pages/datasampah/datasampah';
 import { MasukanPage } from '../pages/masukan/masukan';
+import { MenuPage } from '../pages/menu/menu';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,12 +23,12 @@ import { IonicStorageModule } from '@ionic/storage';
     MyApp,
     HomePage,
     SignPage,
-    ProfilPage,
     BarangPage,
     VolunteerPage,
     NimPage,
     DatasampahPage,
-    MasukanPage
+    MasukanPage,
+    MenuPage
   ],
   imports: [
     BrowserModule,
@@ -41,12 +41,12 @@ import { IonicStorageModule } from '@ionic/storage';
     MyApp,
     HomePage,
     SignPage,
-    ProfilPage,
     BarangPage,
     VolunteerPage,
     NimPage,
     DatasampahPage,
-    MasukanPage
+    MasukanPage,
+    MenuPage
   ],
   providers: [
     StatusBar,
