@@ -3,7 +3,7 @@ page-sign {
     background-color: #8ba2e5;
   }
   .background{
-    background-image: url('../assets/city.jpg');
+    background-image: url('../assets/sign.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -12,7 +12,11 @@ page-sign {
       margin-bottom: 10px;
       background: rgba(0, 0, 0, 0.5);
       border: medium none;
-
+      position: relative;
+      top: 60px;
+      .label{
+        color: #fff;
+      }
       .text-input, {
           color: #fff;
       }
@@ -36,5 +40,16 @@ page-sign {
       *:-moz-placeholder {
           color: #fff!important;
       }
+  }
+  .button{
+    background-color: #2c69ba;
+    position: fixed;
+    right: 1px;
+    bottom: 30px;
+    padding: 10px;
+    color: #fff;
+  }
+  .button:hover{
+    background-color: #164787;
   }
 }

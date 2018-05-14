@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { NimPage } from '../nim/nim';
+import { MasukanPage } from '../masukan/masukan';
 
 /**
  * Generated class for the ProfilPage page.
@@ -24,6 +24,6 @@ export class ProfilPage {
   }
 
   tambah(){
-    this.navCtrl.push(NimPage)
+    this.navCtrl.push(MasukanPage)
   }
 }
