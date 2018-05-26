@@ -24,10 +24,10 @@
     }
 
 
-    $localhost = "localhost";
-    $username = "root";
-    $password = "";
-    $db_name = "register";
+    $localhost = "wahsampah2.atspace.cc";
+    $username = "2726604_wahsampah";
+    $password = "wahsampah";
+    $db_name = "2726604_wahsampah";
 
     //create connection
     $connect = mysqli_connect($localhost, $username, $password, $db_name);
