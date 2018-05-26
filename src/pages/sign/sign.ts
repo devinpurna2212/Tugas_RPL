@@ -34,7 +34,7 @@ export class SignPage {
       buttons: [{
           text: 'login',
           handler: () => {
-            this.navCtrl.push(ProfilPage);
+            this.navCtrl.push(HomePage);
           }
         }]
     });
@@ -62,7 +62,7 @@ export class SignPage {
   }
 
   signUp(){
-    var link = 'http://localhost/backend/register.php';
+    var link = 'http://wahsampah2.atspace.cc/register.php';
     var newUser = JSON.stringify({fullname: this.data.fullname, username: this.data.username, email: this.data.email, password: this.data.password})
     // console.log(newUser);
     this.http.post(link, newUser).subscribe(data => {
