@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, AlertController, ToastController, App, LoadingController, NavParams, MenuController } from 'ionic-angular';
+import { NavController, AlertController, ToastController, App, LoadingController, MenuController } from 'ionic-angular';
 import { SignPage } from '../sign/sign';
 import { ProfilPage } from '../profil/profil';
 import { Http } from '@angular/http';
@@ -12,85 +12,63 @@ import { Data } from '../../providers/data';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  email:any;
+  username:any;
   pass:any;
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
-              public menuCtrl: MenuController,
-              private data : Data,
-              public loadCtrl: LoadingController,
-              public alertCtrl: AlertController,
-              public http: Http) {
-      this.menuCtrl.enable(false);
-      this.testApi();
+  constructor(
+    public app: App,
+    public navCtrl: NavController, 
+    public menuCtrl: MenuController,
+    private data : Data,
+    public loadCtrl: LoadingController,
+    public alertCtrl: AlertController,
+    public toastCtrl: ToastController,
+    public http: Http
+  ) {
+    this.menuCtrl.enable(false);
   }
-  
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
-  
-  sign(){
-    this.navCtrl.push(SignPage)
-  }
-
-  masuk(){
-    this.navCtrl.push(ProfilPage);
-  }
-
-  login(){
-     if(this.email && this.pass){
-      let loading = this.loadCtrl.create({
-        content: 'Loading..'
-      });
-
-      loading.present();
-
-      //apiPost
-      let input = {
-        email: this.email, 
-        pass: this.pass
-      };
-      console.log(input);
-      this.http.post(this.data.BASE_URL+"/login.php",input).subscribe(data => {
-      let response = data.json();
-      console.log(response); 
-      if(response.status==200){    
-        this.data.logout();
-        
-        this.data.login(response.data,"user");//ke lokal
-        
-        this.navCtrl.setRoot(ProfilPage);
-        loading.dismiss();
-      }
-      else {
-        loading.dismiss();
-          let alert = this.alertCtrl.create({
-            title: 'Login Failed',      
-            message : 'please try again',
-            buttons: ['OK']
-          });
-          alert.present();
-          
-      }    
-      });
-      //apiPost    
-}
-  }
 
   loading(){
-    let loader = this.loadingCtrl.create({
+    let loader = this.loadCtrl.create({
       content: "Please wait...",
       duration: 2000
     });
     loader.present();
   }
-  testApi(){
-    //api
-    this.http.get("http://wahsampah2.atspace.cc/config.php").subscribe(data => {
-      console.log(data); 
+
+signIn(){
+    var link = 'http://wahsampah2.atspace.cc/login.php';
+    var newLogin = JSON.stringify({username: this.username, password: this.pass});
+     // console.log(newLogin);
+    this.http.post(link, newLogin).subscribe(data => {
+      let response = data.json();
+      // this.data.response = data["_body"]; //https://stackoverflow.com/questions/39574305/property-body-does-not-exist-on-type-response
+      if(response.status == "200"){
+        // console.log(response.data);
+        this.data.login(response.data, "user");
+        this.loading();
+        this.app.getRootNav().setRoot(ProfilPage);
+        //this.navCtrl.setRoot(TabsPage);
+      } else {
+        // If account not found
+        let toast = this.toastCtrl.create({
+          message: 'Incorrect username or password',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+      }
+    }, error => {
+      console.log("Oooops!");
     });
-    //api     
 }
+
+signUp(){
+    this.navCtrl.push(SignPage);
+  }
+
 }
