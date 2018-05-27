@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
 import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home';
@@ -13,11 +12,13 @@ import { NimPage } from '../pages/nim/nim';
 import { DatasampahPage } from '../pages/datasampah/datasampah';
 import { MasukanPage } from '../pages/masukan/masukan';
 import { MenuPage } from '../pages/menu/menu';
+import { ProfilPage } from '../pages/profil/profil';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { DataProvider } from '../providers/data';
+import { Data } from '../providers/data';
 import { IonicStorageModule } from '@ionic/storage';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { IonicStorageModule } from '@ionic/storage';
     NimPage,
     DatasampahPage,
     MasukanPage,
-    MenuPage
+    MenuPage,
+    ProfilPage
   ],
   imports: [
     BrowserModule,
@@ -48,13 +50,14 @@ import { IonicStorageModule } from '@ionic/storage';
     NimPage,
     DatasampahPage,
     MasukanPage,
-    MenuPage
+    MenuPage,
+    ProfilPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DataProvider
+    Data
   ]
 })
 export class AppModule {}
