@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController, ToastController, MenuController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { ProfilPage } from '../profil/profil';
+import { HomePage } from '../home/home';
+import { Data } from '../../providers/data';
 
 
 @Component({
@@ -11,20 +13,26 @@ import { ProfilPage } from '../profil/profil';
 export class SignPage {
   data:any = {};
   regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-
-  constructor(public navCtrl: NavController, 
-              public alertCtrl: AlertController, 
-              public navParams: NavParams, 
-              public toastCtrl: ToastController,
-              public http: Http) {
-    this.data.fullname = '';
-    this.data.email = '';
-    this.data.username = '';
-    this.data.password = '';
-    // this.data.password2 = '';
-    this.data.response = '';
-
+  
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public loadCtrl: LoadingController,
+    public alertCtrl: AlertController,
+    public toastCtrl: ToastController,
+    public menuCtrl: MenuController,
+    public http: Http) {
+      this.data.fullname = '';
+      this.data.email = '';
+      this.data.username = '';
+      this.data.password = '';
+      this.data.response = '';  
     this.http = http;
+   
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SignPage');
   }
 
   showAlert() {
@@ -42,7 +50,7 @@ export class SignPage {
   }
 
   check(){
-    if(this.data.name === '' || this.data.username === '' || this.data.email === '' || this.data.password === '' || this.data.repassword === ''){
+    if(this.data.fullname === '' || this.data.username === '' || this.data.email === '' || this.data.password === ''){
       let toast = this.toastCtrl.create({
         message: 'Please fill all the data field',
         duration: 2000,
@@ -73,8 +81,10 @@ export class SignPage {
     console.log("Oooops!");
   });
   }
+testApi(){
+  this.http.get("http://wahsampah2.atspace.cc/config.php").subscribe(data => {
+    console.log(data);
+  })
+}
 
-  ionViewDidLoad(){
-    console.log('ionViewDidLoad SignPage');
-  }
 }
