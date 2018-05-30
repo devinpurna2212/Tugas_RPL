@@ -3,6 +3,7 @@ import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import {ProfilPage} from '../pages/profil/profil';
 import { HomePage } from '../pages/home/home';
 import { VolunteerPage } from '../pages/volunteer/volunteer';
 @Component({
@@ -28,5 +29,8 @@ export class MyApp {
   logout(Page){
     this.nav.setRoot(HomePage);
   }
-}
 
+  home(Page){
+    this.nav.setRoot(ProfilPage);
+  }
+}

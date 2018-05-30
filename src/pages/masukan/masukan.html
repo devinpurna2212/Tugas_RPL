@@ -1,3 +1,6 @@
+<ion-header>
+<ion-navbar></ion-navbar>
+</ion-header>
 <ion-content class="background">
     <ion-card>
       <ion-card-header>
@@ -6,17 +9,24 @@
       <ion-card-content>
         <ion-list no-line>
           <ion-item>
-              <ion-input type="text" placeholder="NIM"></ion-input>
+              <ion-input type="text" placeholder="NIM" [(ngModel)]="data.nim"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-input type="text" placeholder="Ukuran"></ion-input>
+              <ion-input type="text" placeholder="Nomor Barang" [(ngModel)]="data.no_barang"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-input type="text" placeholder="Waktu Pembelian"></ion-input>
+              <ion-input type="text" placeholder="Ukuran" [(ngModel)]="data.ukuran"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-input type="text" placeholder="Waktu Pengembalian"></ion-input>
+              <ion-input type="text" placeholder="Jumlah" [(ngModel)]="data.jumlah"></ion-input>
           </ion-item>
+          <ion-item>
+              <ion-input type="text" placeholder="Harga" [(ngModel)]="data.harga"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-input type="date" name="Waktu Pembelian" [(ngModel)]="data.dt"></ion-input>
+          </ion-item>
+
         </ion-list>
         <button ion-button block (click)="save()">Save</button>
       </ion-card-content>

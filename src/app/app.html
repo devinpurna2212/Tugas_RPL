@@ -7,9 +7,10 @@
         </ion-toolbar>
     </ion-header>
 
-    <ion-content>
-        <ion-list>
-            <ion-item (click)="setting()">Setting</ion-item>
+    <ion-content class="no-scroll">
+        <ion-list menuClose>
+            <ion-item (click)="home()"><ion-icon name="home" ion-left></ion-icon>Home</ion-item>
+            <ion-item (click)="setting()"><ion-icon name="settings" ion-left></ion-icon>Setting</ion-item>
             <ion-item (click)="logout()">Log Out</ion-item>
         </ion-list>
     </ion-content>

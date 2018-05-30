@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController,  LoadingController, ToastController, MenuController  } from 'ionic-angular';
 import { ProfilPage } from '../profil/profil';
-
+import { Http } from '@angular/http';
+import { HomePage } from '../home/home';
+import { Data } from '../../providers/data';
 /**
  * Generated class for the MasukanPage page.
  *
@@ -9,39 +11,64 @@ import { ProfilPage } from '../profil/profil';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
-@Component({
-  selector: 'page-masukan',
-  templateUrl: 'masukan.html',
-})
-export class MasukanPage {
+ @IonicPage()
+ @Component({
+   selector: 'page-masukan',
+   templateUrl: 'masukan.html',
+ })
+ export class MasukanPage {
 
-  constructor(private alert: AlertController, public navCtrl: NavController, public navParams: NavParams) {
-  }
+   data:any = {};
 
-  showAlert() {
-    let alert = this.alert.create({
-      title: 'Succes!',
-      subTitle: 'Data Berhasil Disimpan',
-      buttons: [
-        {
-          text: 'ok',
-          handler: () => {
-            this.navCtrl.push(ProfilPage);
-          }
-        }
+   constructor(public navCtrl: NavController,
+               public navParams: NavParams,
+               public loadCtrl: LoadingController,
+               private alertCtrl: AlertController,
+               public toastCtrl: ToastController,
+               public menuCtrl: MenuController,
+               public http: Http) {
+       this.data.nim = '';
+       this.data.no_barang = '';
+       this.data.ukuran = '';
+       this.data.jumlah = '';
+       this.data.harga = '';
+       this.data.dt = '';
+       this.data.response = '';
+     this.http = http;
+   }
 
-      ]
-    });
-    alert.present();
-  }
+   showAlert() {
+     let alert = this.alertCtrl.create({
+       title: 'Succes!',
+       subTitle: 'Data Berhasil Disimpan',
+       buttons: [
+         {
+           text: 'ok',
+           handler: () => {
+             this.navCtrl.setRoot(ProfilPage);
+           }
+         }
 
-  save(){
-    this.showAlert();
-  }
+       ]
+     });
+     alert.present();
+   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MasukanPage');
-  }
+   save(){
+     var link = 'http://wahsampah2.atspace.cc/insert.php';
+     var newUser = JSON.stringify({nim: this.data.nim, no_barang: this.data.no_barang, ukuran: this.data.ukuran, jumlah: this.data.jumlah, harga: this.data.harga, dt: this.data.dt})
+     // console.log(newUser);
+     this.http.post(link, newUser).subscribe(data => {
+       this.data.response = data["_body"]; //https://stackoverflow.com/questions/39574305/property-body-does-not-exist-on-type-response
+       // console.log(this.data.response);
+       this.showAlert();
+   }, error => {
+     console.log("Oooops!");
+   });
+   }
 
-}
+   ionViewDidLoad() {
+     console.log('ionViewDidLoad MasukanPage');
+   }
+
+ }

@@ -8,20 +8,23 @@ import { Storage } from '@ionic/storage';
   and Angular DI.
 */
 @Injectable()
-export class DataProvider {
+export class Data {
   public BASE_URL = 'http://wahsampah2.atspace.cc';
   public HAS_LOGGED_IN = 'status_login';
 
-  constructor(public http: HttpClient, public storage: Storage) {
-    console.log('Hello DataProvider Provider');
+  constructor(public http: Http, public storage: Storage) {
+    console.log('Hello Data Provider');
   }
   
+
+
   login(data : any,role:string) {
     this.storage.set(this.HAS_LOGGED_IN, true);
     this.storage.set('user_data', data);
     this.storage.set('role', role);
   };
   
+
   logout() {
     this.storage.remove(this.HAS_LOGGED_IN);
     this.storage.remove('user_data');

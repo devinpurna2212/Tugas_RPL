@@ -17,7 +17,7 @@ export class HomePage {
 
   constructor(
     public app: App,
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public menuCtrl: MenuController,
     private data : Data,
     public loadCtrl: LoadingController,
@@ -25,7 +25,7 @@ export class HomePage {
     public toastCtrl: ToastController,
     public http: Http
   ) {
-    this.menuCtrl.enable(false);
+    this.menuCtrl.enable(true);
   }
 
   ionViewDidLoad() {
@@ -67,6 +67,9 @@ signIn(){
     });
 }
 
+masuk(){
+  this.navCtrl.setRoot(ProfilPage);
+}
 signUp(){
     this.navCtrl.push(SignPage);
   }

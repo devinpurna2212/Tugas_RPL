@@ -11,11 +11,22 @@
     <div class="a">
     <ion-title>Daftar Volunteer</ion-title>
     </div>
+
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding class="background">
+  <div class="c">
+  <ion-searchbar></ion-searchbar>
+  </div>
+  <ion-card *ngFor="let item of items">
+    <ion-card-header>
+      {{ data.nim }}
+    </ion-card-header>
+  </ion-card>
   <button button class="button2" ion-fab mini (click)="tambah()"><ion-icon name="add"></ion-icon></button>
+
+
 </ion-content>

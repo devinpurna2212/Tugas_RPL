@@ -1,6 +1,7 @@
 // http://ionicframework.com/docs/theming/
-
-
+.no-scroll .scroll-content{
+  overflow: hidden;
+}
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
