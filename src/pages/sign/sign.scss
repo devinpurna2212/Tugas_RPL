@@ -2,6 +2,12 @@ page-sign {
   .headers{
     background-color: #8ba2e5;
   }
+  .no-scroll .scroll-content{
+    overflow: hidden;
+  }
+  .scroll-content{
+    overflow: hidden;
+  }
   .background{
     background-image: url('../assets/sign.png');
     background-position: center;

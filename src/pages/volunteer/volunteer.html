@@ -24,5 +24,35 @@
 
 
 <ion-content padding class="background">
+    <form #registerForm="ngForm" novalidate>
+
+    <ion-list>
+
+    <ion-item>
+      <ion-label floating>Full Name</ion-label>
+      <ion-input type="text" name="name" [(ngModel)]="data.fullname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="text" name="email" [(ngModel)]="data.email"></ion-input>
+      </ion-item>
+
+    <ion-item>
+      <ion-label floating>User Name</ion-label>
+      <ion-input type="text" name="username" [(ngModel)]="data.username"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" name="password" [(ngModel)]="data.password"></ion-input>
+    </ion-item>
+
+  </ion-list>
+  </form>
+
+  <div padding>
+    <button block ion-button (click)="check()" item-left>Register</button>
+  </div>
 
 </ion-content>

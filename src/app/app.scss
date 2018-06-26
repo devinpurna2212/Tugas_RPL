@@ -2,8 +2,19 @@
 .no-scroll .scroll-content{
   overflow: hidden;
 }
+.profil{
+  background-image: url('../assets/logo.png');
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-left: 10px;
+}
+h1{
+  padding-left: 70px;
+  padding-top: 15px;
+}
 // App Global Sass
-// --------------------------------------------------
+// -------------------------------------------------
 // Put style rules here that you want to apply globally. These
 // styles are for the entire app and not just one component.
 // Additionally, this file can be also used as an entry point

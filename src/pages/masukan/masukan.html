@@ -15,7 +15,11 @@
               <ion-input type="text" placeholder="Nomor Barang" [(ngModel)]="data.no_barang"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-input type="text" placeholder="Ukuran" [(ngModel)]="data.ukuran"></ion-input>
+            <ion-label>Ukuran</ion-label>
+              <ion-select [(ngModel)]="data.ukuran">
+                <ion-option value="lima">500 ml</ion-option>
+                <ion-option value="lapan">800 ml</ion-option>
+            </ion-select>
           </ion-item>
           <ion-item>
               <ion-input type="text" placeholder="Jumlah" [(ngModel)]="data.jumlah"></ion-input>
@@ -24,7 +28,7 @@
               <ion-input type="text" placeholder="Harga" [(ngModel)]="data.harga"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-input type="date" name="Waktu Pembelian" [(ngModel)]="data.dt"></ion-input>
+              <ion-input type="date" name="Waktu Pembelian" min="2018-05-30"[(ngModel)]="data.dt"></ion-input>
           </ion-item>
 
         </ion-list>

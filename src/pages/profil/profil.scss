@@ -20,4 +20,8 @@ page-profil {
     top: 18px;
     left: 30px;
   }
+  ion-searchbar{
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
 }
