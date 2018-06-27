@@ -8,12 +8,10 @@
   if (isset($postdata)) {
     $request = json_decode($postdata);
     $username = $request->username;
-    $password = $request->pass;
+    $password = $request->password;
   }
-  // Password Encryption
-  $encrypt_password = md5($password);
-  // Check if the users already registered
-  $query_login = mysqli_query($connect, "SELECT name, email, username FROM user WHERE username='$username' AND pass='$encrypt_password'");
+    // Check if the users already registered
+  $query_login = mysqli_query($connect, "SELECT username,password FROM user WHERE username='$username' AND password='$password'");
   if(mysqli_num_rows($query_login)){
     $row=mysqli_fetch_assoc($query_login);
     $data =array(
