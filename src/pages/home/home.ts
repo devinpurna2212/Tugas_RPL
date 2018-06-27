@@ -1,10 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, AlertController, ToastController, App, LoadingController, MenuController } from 'ionic-angular';
+import { NavController, AlertController, NavParams, LoadingController, MenuController } from 'ionic-angular';
 import { SignPage } from '../sign/sign';
 import { ProfilPage } from '../profil/profil';
 import { Http } from '@angular/http';
 import { MyApp } from '../../app/app.component';
-
+import 'rxjs/add/operator/map';
 import { Data } from '../../providers/data';
 
 @Component({
@@ -13,65 +13,71 @@ import { Data } from '../../providers/data';
 })
 export class HomePage {
   username:any;
-  pass:any;
+  password:any;
 
-  constructor(
-    public app: App,
-    public navCtrl: NavController,
+  constructor( public navCtrl: NavController, 
+    public navParams: NavParams,
     public menuCtrl: MenuController,
     private data : Data,
     public loadCtrl: LoadingController,
     public alertCtrl: AlertController,
-    public toastCtrl: ToastController,
-    public http: Http
-  ) {
-    this.menuCtrl.enable(true);
+    public http: Http) {
+      this.testApi();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
-  }
+  login() {
+    console.log("Username: "+ this.username);
 
-  loading(){
-    let loader = this.loadCtrl.create({
-      content: "Please wait...",
-      duration: 2000
-    });
-    loader.present();
-  }
+    console.log("Password: "+ this.password);  }
 
-signIn(){
-    var link = 'http://wahsampah2.atspace.cc/login.php';
-    var newLogin = JSON.stringify({username: this.username, password: this.pass});
-     // console.log(newLogin);
-    this.http.post(link, newLogin).subscribe(data => {
+  onLoadSignPage(){
+      this.navCtrl.push(SignPage);
+     }
+
+  signIn(){
+    if(this.username && this.password){
+      let loading = this.loadCtrl.create({
+        content: 'memuat..'
+      });
+
+      loading.present();
+      let input = {
+        username: this.username, 
+        password: this.password
+      };
+      console.log(input);
+      this.http.post(this.data.BASE_URL+"/login.php",input).subscribe(data => {
       let response = data.json();
-      // this.data.response = data["_body"]; //https://stackoverflow.com/questions/39574305/property-body-does-not-exist-on-type-response
-      if(response.status == "200"){
-        // console.log(response.data);
-        this.data.login(response.data, "user");
-        this.loading();
-        this.app.getRootNav().setRoot(ProfilPage);
-        //this.navCtrl.setRoot(TabsPage);
-      } else {
-        // If account not found
-        let toast = this.toastCtrl.create({
-          message: 'Incorrect username or password',
-          duration: 3000,
-          position: 'bottom'
-        });
-        toast.present();
+      console.log(response); 
+      if(response.status==200){    
+        this.data.logout();
+        
+        this.data.login(response.data,"user");//ke lokal
+        
+        this.navCtrl.setRoot(ProfilPage);
+        loading.dismiss();
       }
-    }, error => {
-      console.log("Oooops!");
-    });
-}
-
-masuk(){
-  this.navCtrl.setRoot(ProfilPage);
-}
-signUp(){
-    this.navCtrl.push(SignPage);
+      else {
+        loading.dismiss();
+          let alert = this.alertCtrl.create({
+            title: 'Login Failed',      
+            message : 'please try again',
+            buttons: ['OK']
+          });
+          alert.present();
+          
+      }    
+      });
+      //apiPost    
+    }
   }
 
+  testApi(){
+    //api
+    this.http.get("http://wahsampah2.atspace.cc/config.php").subscribe(data => {
+      console.log(data); 
+    });
+    //api     
+  }
 }
+
