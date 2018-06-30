@@ -70,7 +70,7 @@ export class SignPage {
   }
 
   signUp(){
-    var link = 'http://wahsampah2.atspace.cc/register.php';
+    var link = 'http://localhost/backend/register.php';
     var newUser = JSON.stringify({fullname: this.data.fullname, username: this.data.username, email: this.data.email, password: this.data.password})
     // console.log(newUser);
     this.http.post(link, newUser).subscribe(data => {
@@ -81,10 +81,5 @@ export class SignPage {
     console.log("Oooops!");
   });
   }
-testApi(){
-  this.http.get("http://wahsampah2.atspace.cc/config.php").subscribe(data => {
-    console.log(data);
-  })
-}
 
 }
