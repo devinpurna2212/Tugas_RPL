@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color=dark>
     <div class="b">
     <ion-buttons>
       <button ion-button icon-only menuToggle>
@@ -11,6 +11,11 @@
     <div class="a">
     <ion-title>Daftar Volunteer</ion-title>
     </div>
+    <ion-buttons right>
+      <button ion-button (click)="search()">
+        <ion-icon name="search"style="font-size: 25px"></ion-icon>
+      </button>
+    </ion-buttons>
 
   </ion-navbar>
 
@@ -18,15 +23,13 @@
 
 
 <ion-content padding class="background">
-  <div class="c">
-  <ion-searchbar></ion-searchbar>
-  </div>
+
   <ion-card *ngFor="let item of items">
     <ion-card-header>
       {{ data.nim }}
     </ion-card-header>
   </ion-card>
-  <button button class="button2" ion-fab mini (click)="tambah()"><ion-icon name="add"></ion-icon></button>
+  <button button class="button2" ion-fab mini (click)="tambah()" color=dark><ion-icon name="add"></ion-icon></button>
 
 
 </ion-content>

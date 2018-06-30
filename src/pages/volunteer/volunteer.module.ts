@@ -10,7 +10,7 @@ import { VolunteerPage } from './volunteer';
     IonicPageModule.forChild(VolunteerPage),
   ],
   exports: [
-    VolunteerPage;
+    VolunteerPage,
   ]
 })
 export class VolunteerPageModule {}

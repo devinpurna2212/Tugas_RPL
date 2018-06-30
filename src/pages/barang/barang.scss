@@ -1,3 +1,22 @@
 page-barang {
+    .background{
+        background-image: url('../assets/profile.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .button2{
+      position: fixed;
+      bottom: 20px;
+      right: 15px;
+    }
+    .b{
 
+    }
+    .a{
+    }
+    ion-searchbar{
+      -webkit-transition: width 0.4s ease-in-out;
+      transition: width 0.4s ease-in-out;
+    }
 }

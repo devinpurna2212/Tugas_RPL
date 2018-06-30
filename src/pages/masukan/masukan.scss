@@ -1,3 +1,31 @@
 page-masukan {
+  .h5{
+    position: fixed;
+    left: 50px;
+  }
+  .button{
+    background-color: dark;
+    position: static;
+    bottom: 0px;
+    height: 40px;
 
+  }
+  .button:hover{
+    background-color: #04000a;
+  }
+  .scroll-content {
+      overflow: hidden;
+      align-content: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+  }
+  .item {
+      margin-bottom: 10px;
+      border: medium none;
+      position: relative;
+      top: 0px;
+
+  }
 }

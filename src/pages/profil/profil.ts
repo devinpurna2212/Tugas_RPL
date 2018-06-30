@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MasukanPage } from '../masukan/masukan';
+import { BarangPage } from '../barang/barang';
 import { Http } from '@angular/http';
 
 /**
@@ -48,5 +49,9 @@ export class ProfilPage {
   }
   viewEntry(param : any) : void{
     this.navCtrl.push('ProfilPage', param);
+  }
+
+  search(){
+    this.navCtrl.push(BarangPage)
   }
 }

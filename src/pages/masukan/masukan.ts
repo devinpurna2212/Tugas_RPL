@@ -28,22 +28,23 @@ import { Data } from '../../providers/data';
                public menuCtrl: MenuController,
                public http: Http) {
        this.data.nim = '';
-       this.data.no_barang = '';
-       this.data.ukuran = '';
-       this.data.jumlah = '';
+       this.data.jumlahkaleng = '';
+       this.data.jumlahbotol1 = '';
+       this.data.jumlahbotol2 = '';
        this.data.harga = '';
        this.data.dt = '';
        this.data.response = '';
+       this.data.tanggalbalik = '';
      this.http = http;
    }
 
    showAlert() {
      let alert = this.alertCtrl.create({
        title: 'Succes!',
-       subTitle: 'Data Berhasil Disimpan',
+       subTitle: 'Nominal Anda sebesar Rp. 0000,00',
        buttons: [
          {
-           text: 'ok',
+           text: 'OK',
            handler: () => {
              this.navCtrl.setRoot(ProfilPage);
            }
