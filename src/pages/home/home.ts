@@ -12,20 +12,23 @@ import { Data } from '../../providers/data';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  username:any;
-  pass:any;
+  data:any = {};
 
   constructor(
     public app: App,
     public navCtrl: NavController,
     public menuCtrl: MenuController,
-    private data : Data,
     public loadCtrl: LoadingController,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
     public http: Http
   ) {
     this.menuCtrl.enable(true);
+    this.data.username = "";
+    this.data.password = "";
+    this.data.response = "";
+    this.http = http;
+
   }
 
   ionViewDidLoad() {
@@ -35,27 +38,27 @@ export class HomePage {
   loading(){
     let loader = this.loadCtrl.create({
       content: "Please wait...",
-      duration: 2000
+      duration: 1000
     });
     loader.present();
   }
 
 signIn(){
-    var link = 'http://wahsampah2.atspace.cc/login.php';
-    var newLogin = JSON.stringify({username: this.username, password: this.pass});
+    var link = 'http://localhost/backend/login.php';
+    var newLogin = JSON.stringify({username: this.data.username, password: this.data.password});
      // console.log(newLogin);
     this.http.post(link, newLogin).subscribe(data => {
-      let response = data.json();
-      // this.data.response = data["_body"]; //https://stackoverflow.com/questions/39574305/property-body-does-not-exist-on-type-response
+      var response = data.json();
+          // this.data.response = data["_body"]; //https://stackoverflow.com/questions/39574305/property-body-does-not-exist-on-type-response
       if(response.status == "200"){
         // console.log(response.data);
-        this.data.login(response.data, "user");
+       // this.data.login(response.data, "user");
         this.loading();
-        this.app.getRootNav().setRoot(ProfilPage);
-        //this.navCtrl.setRoot(TabsPage);
+      this.app.getRootNav().setRoot(ProfilPage);
+        // this.navCtrl.setRoot(ProfilPage);
       } else {
         // If account not found
-        let toast = this.toastCtrl.create({
+        var toast = this.toastCtrl.create({
           message: 'Incorrect username or password',
           duration: 3000,
           position: 'bottom'
@@ -66,7 +69,6 @@ signIn(){
       console.log("Oooops!");
     });
 }
-
 masuk(){
   this.navCtrl.setRoot(ProfilPage);
 }
