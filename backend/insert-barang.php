@@ -24,7 +24,7 @@ if (isset($postdata)) {
     $tanggalbalik = $request->lastdate;
 }
     
-    $query_register = mysqli_query($connect, "INSERT INTO crud (id, nim, jumlahkaleng, jbotol500, jbotol500atas, harga, currentdate, lastdate) VALUES ('$id', '$nim', '$jumlahkaleng', '$jumlahbotol1', '$jumlahbotol2', '$harga', NOW() , NOW()+60 )"); 
+    $query_register = mysqli_query($connect, "INSERT INTO crud (id, nim, jumlahkaleng, jbotol500, jbotol500atas, harga, currentdate, lastdate) VALUES ('$id', '$nim', '$jumlahkaleng', '$jumlahbotol1', '$jumlahbotol2', '$harga', NOW() , '$tanggalbalik')"); 
     if($query_register){
             $data =array(
                 'message' => "Insert Barang Success",
