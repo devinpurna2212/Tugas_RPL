@@ -1,38 +1,39 @@
 <?php
-session_start();
 include "config.php";
 
- $query_select=mysqli_query($connect, "SELECT id FROM user ORDER BY id DESC");
+ $query_select=mysqli_query($connect, "SELECT id FROM crud ORDER BY id DESC");
   $id=mysqli_fetch_assoc($query_select);
-  $id= $id['userID']+1;
+  $id= $id['id']+1;
   $postdata = file_get_contents("php://input");
   $nim = "";
-  $no_barang = "";
-  $ukuran = "";
-  $jumlah = "";
+  $jumlahkaleng = "";
+  $jumlahbotol1 = "";
+  $jumlahbotol2 = "";
   $harga = "";
-  $dt = "";
+  $tanggalbeli = "";
+  $tanggalbalik = "";
   
 if (isset($postdata)) {
     $request = json_decode($postdata);
     $nim = $request->nim;
-    $no_barang = $request->no_barang;
-    $ukuran = $request->ukuran;
-    $jumlah = $request->jumlah;
+    $jumlahkaleng = $request->jumlahkaleng;
+    $jumlahbotol1 = $request->jbotol500;
+    $jumlahbotol2 = $request->jbotol500atas;
     $harga = $request->harga;
-    $dt = $request->dt;
+    $tanggalbeli = $request->currentdate;
+    $tanggalbalik = $request->lastdate;
 }
     
-    $query_register = mysqli_query($connect, "INSERT INTO crud (nim, no_barang, ukuran, jumlah, harga, dt) VALUES ('$nim', '$no_barang', '$ukuran', '$jumlah', '$harga', '$dt')"); 
+    $query_register = mysqli_query($connect, "INSERT INTO crud (id, nim, jumlahkaleng, jbotol500, jbotol500atas, harga, currentdate, lastdate) VALUES ('$id', '$nim', '$jumlahkaleng', '$jumlahbotol1', '$jumlahbotol2', '$harga', NOW() , NOW()+60 )"); 
     if($query_register){
             $data =array(
-                'message' => "Register Success",
+                'message' => "Insert Barang Success",
                 'status' => "200"
             );
         }
         else{
             $data =array(
-                'message' => "Register Failed",
+                'message' => "Insert Failed",
                 'status' => "404"
             );
         }  
