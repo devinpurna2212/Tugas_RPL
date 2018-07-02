@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { MasukanPage } from '../masukan/masukan';
 import { BarangPage } from '../barang/barang';
+import { Data } from '../../providers/data';
 import { Http } from '@angular/http';
 
 /**
@@ -17,41 +18,46 @@ import { Http } from '@angular/http';
   templateUrl: 'profil.html',
 })
 export class ProfilPage {
-  public items : Array<any> = [];
-  data = [
-    {nim: 'G64160000'}
-  ]
+  items = [];
+  loader: any;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  public http: Http) {
+              public http: Http, public data:Data, public loadingCtrl:LoadingController) {
   }
-  ionViewWillEnter() : void{
-    this.load();
-  }
-  load() : void{
-    this.http
-    .get('http://www.wahsampah2.atspace.cc/insert.php')
-    .subscribe((data : any) =>
-    {
-      console.dir(data);
-      this.items = data;
-    },
-    (error : any) =>
-    {
-      console.dir(error);
-    });
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilPage');
+  
+  ngOnInit()
+  {
+      this.presentLoading();
+      this.data.LoadSampah().subscribe(
+        data => {
+          this.items = data;
+          console.log(data);
+            this.loader.dismiss();
+        },
+        err => {
+          console.log(err);
+        }
+    );
   }
 
-  tambah(){
+ tambah(){
     this.navCtrl.push(MasukanPage)
   }
-  viewEntry(param : any) : void{
-    this.navCtrl.push('ProfilPage', param);
-  }
 
-  search(){
+ 
+update(item)
+{
+    this.navCtrl.push(MasukanPage,{item:item});
+}
+
+search(){
     this.navCtrl.push(BarangPage)
   }
+
+  presentLoading() {
+    this.loader = this.loadingCtrl.create({
+        content: "Loading..."
+    });
+    this.loader.present();
+}
 }
