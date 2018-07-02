@@ -24,11 +24,29 @@
 
 <ion-content padding class="background">
 
-  <ion-card *ngFor="let item of items">
-    <ion-card-header>
-      {{ data.nim }}
-    </ion-card-header>
-  </ion-card>
+  <ion-list>
+    <ion-item-sliding *ngFor = "let item of items">
+        <ion-item>
+            <h2>{{item.nim}}</h2>
+          </ion-item>
+          <ion-item-options side="left" >
+            <button ion-button color="primary">
+              <ion-icon name="eye"></ion-icon>
+              View
+            </button>
+            <button ion-button color="secondary" (click)="update(item)">
+              <ion-icon name="open"></ion-icon>
+              Edit
+            </button>
+          </ion-item-options>
+          <ion-item-options side="right">
+            <button ion-button color="danger">
+              <ion-icon name="trash"></ion-icon>
+              Delete
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+  </ion-list>
   <button button class="button2" ion-fab mini (click)="tambah()" color=dark><ion-icon name="add"></ion-icon></button>
 
 
