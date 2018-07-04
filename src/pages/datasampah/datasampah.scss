@@ -1,3 +1,26 @@
 page-datasampah {
-
+.bottle{
+    background-image: url('../assets/botol.png');
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding-left: 20px;
+  }
+.h4{
+  left: 30px;
+}
+.background{
+    background-image: url('../assets/profile.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.scroll-content {
+    overflow: hidden;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
 }

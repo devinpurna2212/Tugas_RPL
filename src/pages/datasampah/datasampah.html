@@ -6,13 +6,42 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>datasampah</ion-title>
+  <ion-navbar color=dark>
+    <ion-title>Detail</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content class="background">
+<ion-card>
+  <ion-item>
+      <h3>NIM</h3>
+      <ion-icon name="person" item-start></ion-icon><h2>{{person.nim}}</h2>
+  </ion-item>
+  <ion-item>
+      <h4>Kaleng</h4>
+      <ion-icon name="square" item-start></ion-icon><h2>{{person.jumlahkaleng}}</h2>
+  </ion-item>
+  <ion-item>
+      <h4>Botol < 600 ml</h4>
+      <ion-icon name="square" item-start></ion-icon><h2>{{person.jbotol500}}</h2>
+  </ion-item>
+  <ion-item>
+      <h4>Botol > 600ml</h4>
+      <ion-icon name="square" item-start></ion-icon><h2>{{person.jbotol500atas}}</h2>
+  </ion-item>
+  <ion-item>
+      <h3>Harga</h3>
+      <ion-icon name="logo-usd" item-start></ion-icon><h2>{{person.harga}}</h2>
+  </ion-item>
+  <ion-item>
+      <h3>Waktu Pengembalian</h3>
+      <ion-icon name="time" item-start></ion-icon><h2>{{person.currentdate}}</h2>
+  </ion-item>
+  <ion-item>
+      <h3>Waktu Pengembalian</h3>
+      <ion-icon name="time" item-start></ion-icon><h2>{{person.lastdate}}</h2>
+  </ion-item>
+</ion-card>
 </ion-content>

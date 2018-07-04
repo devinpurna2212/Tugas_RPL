@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {ProfilPage} from '../pages/profil/profil';
 import { HomePage } from '../pages/home/home';
 import { VolunteerPage } from '../pages/volunteer/volunteer';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -20,6 +21,7 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+
   }
 
   setting(Page){

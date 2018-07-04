@@ -9,93 +9,18 @@
           </ion-item>
           <ion-item>
               <ion-label floating>Kaleng</ion-label>
-              <ion-select [(ngModel)]="data.jumlahkaleng">
-                <ion-option value="nol">0</ion-option>
-                <ion-option value="satu">1</ion-option>
-                <ion-option value="dua">2</ion-option>
-                <ion-option value="tiga">3</ion-option>
-                <ion-option value="empat">4</ion-option>
-                <ion-option value="lima">5</ion-option>
-                <ion-option value="enam">6</ion-option>
-                <ion-option value="tujuh">7</ion-option>
-                <ion-option value="delapan">8</ion-option>
-                <ion-option value="sembilan">9</ion-option>
-                <ion-option value="sepuluh">10</ion-option>
-                <ion-option value="sebelas">11</ion-option>
-                <ion-option value="duabelas">12</ion-option>
-                <ion-option value="tigabelas">13</ion-option>
-                <ion-option value="empatbelas">14</ion-option>
-                <ion-option value="limabelas">15</ion-option>
-                <ion-option value="enambelas">16</ion-option>
-                <ion-option value="tujuhbelas">17</ion-option>
-                <ion-option value="delapanbelas">18</ion-option>
-                <ion-option value="sembilanbelas">19</ion-option>
-                <ion-option value="duapuluh">20</ion-option>
-              </ion-select>
+              <ion-input type="text" name="Kaleng" [(ngModel)]="data.jumlahkaleng"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label floating>Botol -500ml</ion-label>
-              <ion-select [(ngModel)]="data.jumlahbotol1">
-                <ion-option value="nol">0</ion-option>
-                <ion-option value="satu">1</ion-option>
-                <ion-option value="dua">2</ion-option>
-                <ion-option value="tiga">3</ion-option>
-                <ion-option value="empat">4</ion-option>
-                <ion-option value="lima">5</ion-option>
-                <ion-option value="enam">6</ion-option>
-                <ion-option value="tujuh">7</ion-option>
-                <ion-option value="delapan">8</ion-option>
-                <ion-option value="sembilan">9</ion-option>
-                <ion-option value="sepuluh">10</ion-option>
-                <ion-option value="sebelas">11</ion-option>
-                <ion-option value="duabelas">12</ion-option>
-                <ion-option value="tigabelas">13</ion-option>
-                <ion-option value="empatbelas">14</ion-option>
-                <ion-option value="limabelas">15</ion-option>
-                <ion-option value="enambelas">16</ion-option>
-                <ion-option value="tujuhbelas">17</ion-option>
-                <ion-option value="delapanbelas">18</ion-option>
-                <ion-option value="sembilanbelas">19</ion-option>
-                <ion-option value="duapuluh">20</ion-option>
-              </ion-select>
+            <ion-label floating>Botol < 600ml</ion-label>
+              <ion-input type="text" name="Botol -500ml" [(ngModel)]="data.jumlahbotol1"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label floating>Botol +500ml</ion-label>
-              <ion-select [(ngModel)]="data.jumlahbotol2">
-                <ion-option value="nol">0</ion-option>
-                <ion-option value="satu">1</ion-option>
-                <ion-option value="dua">2</ion-option>
-                <ion-option value="tiga">3</ion-option>
-                <ion-option value="empat">4</ion-option>
-                <ion-option value="lima">5</ion-option>
-                <ion-option value="enam">6</ion-option>
-                <ion-option value="tujuh">7</ion-option>
-                <ion-option value="delapan">8</ion-option>
-                <ion-option value="sembilan">9</ion-option>
-                <ion-option value="sepuluh">10</ion-option>
-                <ion-option value="sebelas">11</ion-option>
-                <ion-option value="duabelas">12</ion-option>
-                <ion-option value="tigabelas">13</ion-option>
-                <ion-option value="empatbelas">14</ion-option>
-                <ion-option value="limabelas">15</ion-option>
-                <ion-option value="enambelas">16</ion-option>
-                <ion-option value="tujuhbelas">17</ion-option>
-                <ion-option value="delapanbelas">18</ion-option>
-                <ion-option value="sembilanbelas">19</ion-option>
-                <ion-option value="duapuluh">20</ion-option>
-              </ion-select>
+            <ion-label floating>Botol > 600ml</ion-label>
+              <ion-input type="text" name="Botol +500ml" [(ngModel)]="data.jumlahbotol2"></ion-input>
           </ion-item>
-          <ion-item>
-            <ion-label floating>Waktu Pembelian</ion-label>
-                <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="data.dt"></ion-datetime>
-          </ion-item>
-          <ion-item>
-            <ion-label floating>Tanggal Balik</ion-label>
-              <ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="data.tanggalbalik"></ion-datetime>
-          </ion-item>
-
         </ion-list>
-        <ion-footer>
-        <button ion-button block (click)="save()" color=dark>Save</button>
-        </ion-footer>
+        <div padding>
+            <button ion-button block (click)="check()" color=dark>Save</button>
+        </div>
   </ion-content>

@@ -30,13 +30,9 @@
             <h2>{{item.nim}}</h2>
           </ion-item>
           <ion-item-options side="left" >
-            <button ion-button color="primary">
+            <button ion-button color="primary" (click)="view(item)">
               <ion-icon name="eye"></ion-icon>
               View
-            </button>
-            <button ion-button color="secondary" (click)="update(item)">
-              <ion-icon name="open"></ion-icon>
-              Edit
             </button>
           </ion-item-options>
           <ion-item-options side="right">

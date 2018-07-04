@@ -19,6 +19,7 @@ import { Data } from '../../providers/data';
  export class MasukanPage {
 
    data:any = {};
+   regexp = new RegExp(/\d/);
 
    constructor(public navCtrl: NavController,
                public navParams: NavParams,
@@ -56,20 +57,59 @@ import { Data } from '../../providers/data';
    }
 
    save(){
-     var link = 'http://wahsampah2.atspace.cc/insert.php';
-     var newUser = JSON.stringify({nim: this.data.nim, no_barang: this.data.no_barang, ukuran: this.data.ukuran, jumlah: this.data.jumlah, harga: this.data.harga, dt: this.data.dt})
+     var link = 'http://wahsampah2.atspace.cc/insert-barang.php';
+     var newUser = JSON.stringify({nim: this.data.nim, jumlahkaleng: this.data.jumlahkaleng, jbotol500: this.data.jumlahbotol1, jbotol500atas: this.data.jumlahbotol2, harga: this.data.harga})
      // console.log(newUser);
      this.http.post(link, newUser).subscribe(data => {
        this.data.response = data["_body"]; //https://stackoverflow.com/questions/39574305/property-body-does-not-exist-on-type-response
        // console.log(this.data.response);
+         this.loading();
        this.showAlert();
    }, error => {
      console.log("Oooops!");
    });
    }
-
+   check(){
+     if(this.data.nim === '' || this.data.jumlahkaleng === '' || this.data.jumlahbotol1 === '' || this.data.jumlahbotol2 === ''){
+       let toast = this.toastCtrl.create({
+         message: 'Please fill all the data field',
+         duration: 2000,
+         position: 'bottom'
+       });
+       toast.present();
+     } else if(this.regexp.test(this.data.jumlahkaleng) == false) {
+       let toast = this.toastCtrl.create({
+         message: 'Please check jumlah kaleng',
+         duration: 2000,
+         position: 'bottom'
+       });
+       toast.present();
+     }else if(this.regexp.test(this.data.jumlahbotol1) == false) {
+       let toast = this.toastCtrl.create({
+         message: 'Please check jumlah botol<500ml',
+         duration: 2000,
+         position: 'bottom'
+       });
+       toast.present();
+     }else if(this.regexp.test(this.data.jumlahbotol2) == false) {
+       let toast = this.toastCtrl.create({
+         message: 'Please check jumlah botol>500ml',
+         duration: 2000,
+         position: 'bottom'
+       });
+       toast.present();
+     } else {
+       this.save();
+     }
+   }
    ionViewDidLoad() {
      console.log('ionViewDidLoad MasukanPage');
    }
-
+   loading(){
+     let loader = this.loadCtrl.create({
+       content: "Please wait...",
+       duration: 1000
+     });
+     loader.present();
+   }
  }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { MasukanPage } from '../masukan/masukan';
 import { BarangPage } from '../barang/barang';
+import { DatasampahPage } from '../datasampah/datasampah';
 import { Data } from '../../providers/data';
 import { Http } from '@angular/http';
 
@@ -20,11 +21,11 @@ import { Http } from '@angular/http';
 export class ProfilPage {
   items = [];
   loader: any;
-  
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public http: Http, public data:Data, public loadingCtrl:LoadingController) {
   }
-  
+
   ngOnInit()
   {
       this.presentLoading();
@@ -44,7 +45,9 @@ export class ProfilPage {
     this.navCtrl.push(MasukanPage)
   }
 
- 
+view(item){
+  this.navCtrl.push(DatasampahPage,{item:item});
+}
 update(item)
 {
     this.navCtrl.push(MasukanPage,{item:item});

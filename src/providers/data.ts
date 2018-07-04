@@ -8,17 +8,17 @@ export class Data {
 
   public BASE_URL = 'http://localhost/backend';
   public HAS_LOGGED_IN = 'status_login';
-  
-  constructor(public http: Http , 
+
+  constructor(public http: Http ,
               public storage: Storage) {
   }
 
  LoadSampah() {
-    var url = 'http://localhost/backend/load-barang.php';
+    var url = 'http://wahsampah2.atspace.cc/load-barang.php';
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
-  
+
  login(data: any, role:string) {
     this.storage.set(this.HAS_LOGGED_IN, true);
     this.storage.set('user_data', data);
