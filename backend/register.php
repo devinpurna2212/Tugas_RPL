@@ -15,10 +15,9 @@
     $fullname = $request->fullname;
     $username = $request->username;
     $email = $request->email;
-    $password = $request->pass;
+    $password = $request->password;
   }
-  // Password Encryption because its cool
-  $encrypt_password = md5($password);
+      
   // Check if the users already registered
     $query_regis = mysqli_query($connect, "SELECT * FROM user WHERE email='$email' OR username='$username'");
     if(mysqli_num_rows($query_regis)){
@@ -28,7 +27,7 @@
       );
     }
     else {
-        $query_register = mysqli_query($connect, "INSERT INTO user (userID, fullname, email, username, pass) VALUES ('$id', '$fullname','$email','$username','$encrypt_password')");
+        $query_register = mysqli_query($connect, "INSERT INTO user (userID, fullname, email, username, password) VALUES ('$id', '$fullname','$email','$username','$password')");
         // Check if query executed successfully if not send a 404 status code
         if($query_register){
             $data =array(
