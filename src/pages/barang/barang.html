@@ -16,8 +16,35 @@
 
   <ion-content padding class="background">
 
-    <ion-searchbar></ion-searchbar>
+    <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
+    <div *ngIf="searching" class="spinner-container" text-center>
+      <ion-spinner></ion-spinner>
+    </div>
 
+    <ion-row *ngIf=!found>
+      <ion-col text center>
+        <p></p>
+      </ion-col>
+    </ion-row>
 
+    <ion-list>
+      <ion-item-sliding *ngFor = "let item of items">
+          <ion-item>
+              <h2>{{item.nim}}</h2>
+            </ion-item>
+            <ion-item-options side="left" >
+              <button ion-button color="primary" (click)="view(item)">
+                <ion-icon name="eye"></ion-icon>
+                View
+              </button>
+            </ion-item-options>
+            <ion-item-options side="right">
+              <button ion-button color="danger">
+                <ion-icon name="trash"></ion-icon>
+                Delete
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+    </ion-list>
 
 </ion-content>

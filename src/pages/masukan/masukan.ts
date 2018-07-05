@@ -23,11 +23,11 @@ import { Data } from '../../providers/data';
 
    constructor(public navCtrl: NavController,
                public navParams: NavParams,
-               public loadCtrl: LoadingController,
+               public loadingCtrl: LoadingController,
                private alertCtrl: AlertController,
                public toastCtrl: ToastController,
                public menuCtrl: MenuController,
-               public http: Http) {
+               public http: Http ) {
        this.data.nim = '';
        this.data.jumlahkaleng = '';
        this.data.jumlahbotol1 = '';
@@ -38,11 +38,17 @@ import { Data } from '../../providers/data';
        this.data.tanggalbalik = '';
      this.http = http;
    }
-
+   presentLoading() {
+     this.loader = this.loadingCtrl.create({
+         content: "Harap tunggu..."
+     });
+     this.loader.present();
+   }
    showAlert() {
+     this.loader.dismiss();
      let alert = this.alertCtrl.create({
-       title: 'Succes!',
-       subTitle: 'Nominal Anda sebesar Rp. 0000,00',
+       title: 'Data tersimpan!',
+       subTitle: '',
        buttons: [
          {
            text: 'OK',
@@ -63,42 +69,43 @@ import { Data } from '../../providers/data';
      this.http.post(link, newUser).subscribe(data => {
        this.data.response = data["_body"]; //https://stackoverflow.com/questions/39574305/property-body-does-not-exist-on-type-response
        // console.log(this.data.response);
-         this.loading();
        this.showAlert();
-   }, error => {
-     console.log("Oooops!");
-   });
+     }, error => {
+       console.log("Oooops!");
+     });
    }
+
    check(){
      if(this.data.nim === '' || this.data.jumlahkaleng === '' || this.data.jumlahbotol1 === '' || this.data.jumlahbotol2 === ''){
        let toast = this.toastCtrl.create({
-         message: 'Please fill all the data field',
+         message: 'Harap isi semua field',
          duration: 2000,
          position: 'bottom'
        });
        toast.present();
      } else if(this.regexp.test(this.data.jumlahkaleng) == false) {
        let toast = this.toastCtrl.create({
-         message: 'Please check jumlah kaleng',
+         message: 'Jumlah Kaleng harus dalam bilangan bulat',
          duration: 2000,
          position: 'bottom'
        });
        toast.present();
      }else if(this.regexp.test(this.data.jumlahbotol1) == false) {
        let toast = this.toastCtrl.create({
-         message: 'Please check jumlah botol<500ml',
+         message: 'Jumlah botol<600ml harus dalam bilangan bulat',
          duration: 2000,
          position: 'bottom'
        });
        toast.present();
      }else if(this.regexp.test(this.data.jumlahbotol2) == false) {
        let toast = this.toastCtrl.create({
-         message: 'Please check jumlah botol>500ml',
+         message: 'Jumlah botol>600ml harus dalam bilangan bulat',
          duration: 2000,
          position: 'bottom'
        });
        toast.present();
      } else {
+       this.presentLoading();
        this.save();
      }
    }
@@ -106,8 +113,8 @@ import { Data } from '../../providers/data';
      console.log('ionViewDidLoad MasukanPage');
    }
    loading(){
-     let loader = this.loadCtrl.create({
-       content: "Please wait...",
+     let loader = this.loadingCtrl.create({
+       content: "Mohon tunggu...",
        duration: 1000
      });
      loader.present();
