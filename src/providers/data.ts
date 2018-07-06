@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
+import { Http, RequestOptions, Headers } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
-import { Headers } from '@angular/http';
+
 
 @Injectable()
 export class Data {
@@ -56,12 +56,18 @@ export class Data {
     }
 
     searchByNIM(searchItem){
-      return this.http.post(this.url+'/search', searchItem, this.options)
+      return this.http.post(this.url+'/load-barang,php', searchItem, this.options)
       .map(res=>res.json())
       .catch(this.handleError);
     }
 
     handleError(error){
       return Observable.throw(error.json().error || 'Server Error');
+    }
+
+    removeByNIM(item){
+      return this.http.get(this.url+'delete-barang.php'+nim, this.options)
+      .map(res=>res.json())
+      .catch(this.handleError);
     }
 }

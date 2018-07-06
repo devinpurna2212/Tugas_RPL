@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController,  LoadingController, ToastController, MenuController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController,
+        LoadingController, ToastController, MenuController  } from 'ionic-angular';
 import { ProfilPage } from '../profil/profil';
 import { Http } from '@angular/http';
 import { HomePage } from '../home/home';
