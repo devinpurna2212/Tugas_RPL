@@ -80,14 +80,14 @@ confirmRemove(item){
   });
   confirm.present();
 }
-alertHandler(title, messages){
-  const alert = this.alertCtrl.create({title:title, message:messages, buttons: ['Ok']});
+alertHandler(){
+  const alert = this.alertCtrl.create({title:'Sukses!', subTitle:'Data berhasil dihapus.', buttons: ['OK']});
   alert.present();
 }
 onRemove(item){
   this.data.removeByNIM(item).subscribe(output=>{
     this.navCtrl.pop();
-    this.alertHandler('Sukses!','Data berhasil dihapus');
+    this.alertHandler();
   },error=>{
     this.alertHandler('Error',error);
   })
@@ -98,6 +98,7 @@ removeItem(item){
       this.items.splice(i,1);
     }
   }
+  this.alertHandler('Sukses!','Data berhasil dihapus');
 }
 delete(item)
   {
