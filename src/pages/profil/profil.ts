@@ -59,7 +59,7 @@ update(item)
 search(){
     this.navCtrl.push(BarangPage)
   }
-confirmRemove($nim){
+confirmRemove(item){
   let confirm = this.alertCtrl.create({
     title: 'Konfirmasi',
     message: 'Anda yakin ingin menghapus data '+ item.nim + '?',
@@ -84,8 +84,8 @@ alertHandler(title, messages){
   const alert = this.alertCtrl.create({title:title, message:messages, buttons: ['Ok']});
   alert.present();
 }
-onRemove(){
-  this.data.removeByNIM(item.nim).subscribe(output=>{
+onRemove(item){
+  this.data.removeByNIM(item).subscribe(output=>{
     this.navCtrl.pop();
     this.alertHandler('Sukses!','Data berhasil dihapus');
   },error=>{
@@ -93,9 +93,8 @@ onRemove(){
   })
 }
 removeItem(item){
-  let i = number;
-  for(i = 0; i < this.items.length; i++){
-    if(this.items[i]==person){
+  for(let i = 0; i < this.items.length; i++){
+    if(this.items[i]==item){
       this.items.splice(i,1);
     }
   }

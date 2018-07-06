@@ -66,7 +66,7 @@ export class Data {
     }
 
     removeByNIM(item){
-      return this.http.get(this.url+'delete-barang.php'+nim, this.options)
+      return this.http.get(this.url+'delete-barang.php', this.options)
       .map(res=>res.json())
       .catch(this.handleError);
     }
