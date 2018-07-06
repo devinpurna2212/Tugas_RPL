@@ -56,6 +56,21 @@ update(item)
 search(){
     this.navCtrl.push(BarangPage)
   }
+  
+Delete()
+  {
+    let link = 'http://localhost/backend/delete-barang.php';
+    this.http.post(link, JSON.stringify({id: this.post.id})).subscribe(data => {
+      let response = data.json();
+      console.log(response);
+      let toast = this.toastCtrl.create({
+        message: 'Sampah berhasil dihapus',
+        duration: 1000,
+        position: 'top'
+    });
+    toast.present();
+  });
+}
 
   presentLoading() {
     this.loader = this.loadingCtrl.create({
