@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, LoadingController, AlertController
 import { Data } from '../../providers/data';
 import { Http } from '@angular/http';
 import { FormControl } from '@angular/forms';
+import { RestApiProvider } from '../../providers/rest-api/rest-api';
+import { SearchPipe } from '../../pipes/search';
 import 'rxjs/add/operator/debounceTime';
 
 @IonicPage()
@@ -12,6 +14,7 @@ import 'rxjs/add/operator/debounceTime';
 })
 export class BarangPage {
   person;
+  items: string[];
   searching: any = false;
   searchTerm: string = '';
   searchControl: FormControl;

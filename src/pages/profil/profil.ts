@@ -73,6 +73,7 @@ confirmRemove(item){
       {
         text: 'Ya',
         handler: ()=>{
+          this.presentLoading();
           this.removeItem(item);
         }
       }
@@ -81,6 +82,7 @@ confirmRemove(item){
   confirm.present();
 }
 alertHandler(){
+  this.loader.dismiss();
   const alert = this.alertCtrl.create({title:'Sukses!', subTitle:'Data berhasil dihapus.', buttons: ['OK']});
   alert.present();
 }
@@ -98,19 +100,15 @@ removeItem(item){
       this.items.splice(i,1);
     }
   }
-  this.alertHandler('Sukses!','Data berhasil dihapus');
+  this.alertHandler();
 }
 delete(item)
   {
     let link = 'http://localhost/backend/delete-barang.php';
-    this.http.post(link, JSON.stringify({id: this.post.data})).subscribe(data => {
+    this.http.post(link, JSON.stringify({item:this.data.item})).subscribe(data => {
       let response = data.json();
       console.log(response);
-      let toast = this.toastCtrl.create({
-        message: 'Data berhasil dihapus',
-        duration: 1000,
-        position: 'top'
-    });
+      this.alertHandler();
     toast.present();
   });
 }

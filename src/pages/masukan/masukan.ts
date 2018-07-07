@@ -28,7 +28,8 @@ import { Data } from '../../providers/data';
                private alertCtrl: AlertController,
                public toastCtrl: ToastController,
                public menuCtrl: MenuController,
-               public http: Http ) {
+               public http: Http,
+             public data: Data ) {
        this.data.nim = '';
        this.data.jumlahkaleng = '';
        this.data.jumlahbotol1 = '';

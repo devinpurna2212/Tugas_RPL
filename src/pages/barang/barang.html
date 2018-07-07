@@ -16,19 +16,10 @@
 
   <ion-content padding class="background">
 
-    <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
-    <div *ngIf="searching" class="spinner-container" text-center>
-      <ion-spinner></ion-spinner>
-    </div>
-
-    <ion-row *ngIf=!found>
-      <ion-col text center>
-        <p></p>
-      </ion-col>
-    </ion-row>
+    <ion-searchbar [(ngModel)]="terms"></ion-searchbar>
 
     <ion-list>
-      <ion-item-sliding *ngFor = "let item of items">
+      <ion-item-sliding *ngFor = "let item of items | search : terms ">
           <ion-item>
               <h2>{{item.nim}}</h2>
             </ion-item>

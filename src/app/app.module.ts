@@ -15,6 +15,8 @@ import { DatasampahPage } from '../pages/datasampah/datasampah';
 import { MasukanPage } from '../pages/masukan/masukan';
 import { MenuPage } from '../pages/menu/menu';
 
+import { RestApiProvider } from '../providers/rest-api/rest-api';
+import { SearchPipe } from '../pipes/search/search';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Data } from '../providers/data';
@@ -31,7 +33,8 @@ import { IonicStorageModule } from '@ionic/storage';
     DatasampahPage,
     MasukanPage,
     MenuPage,
-    ProfilPage
+    ProfilPage,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { IonicStorageModule } from '@ionic/storage';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Data
+    Data,
+    RestApiProvider
   ]
 })
 export class AppModule {}
